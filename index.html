@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-animate/1.8.2/angular-animate.js" integrity="sha512-ikQJHkjSbJO2+xpZXCaYVUGUXpz+c8Ip02U8DaQDuLwADRbfkuPh6fyNUjD1zNuPjqj3j6y11iOydnYU8of1bQ==" crossorigin="anonymous"></script>
+<style>
+	body {
+  margin: 0;
+  padding: 0;
+  background-color: #17a2b8;
+  height: 100vh;
+}
+#login .container #login-row #login-column #login-box {
+  margin-top: 120px;
+  max-width: 600px;
+  height: 400px;
+  border: 1px solid #9C9C9C;
+  background-color: #EAEAEA;
+}
+#login .container #login-row #login-column #login-box #login-form {
+  padding: 20px;
+}
+#login .container #login-row #login-column #login-box #login-form #register-link {
+  margin-top: -85px;
+}
+	</style>
+<body>
+
+	<div ng-app="app">
+		<div ng-controller="MyController">
+
+
+ <div id="login">
+        <h3 class="text-center text-white pt-5">Login form</h3>
+        <div class="container">
+            <div id="login-row" class="row justify-content-center align-items-center">
+                <div id="login-column" class="col-md-6">
+                    <div id="login-box" class="col-md-12">
+                        <form id="login-form" class="form" action="" method="post">
+                            <h3 class="text-center text-info">Login</h3>
+                             <div class="form-group">
+                                <label for="username" class="text-info">Username:</label><br>
+                                <input type="text" name="username" id="username" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="username" class="text-info">Password:</label><br>
+                                <input type="password" ng-keyup="eylem()" ng-style="deger && FirstPass && SecondPass && {'background':'#32CD32', 'color':'white'}" ng-model="FirstPass" name="username" id="password" class="form-control">
+                              
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="text-info">Repeat Password:</label><br>
+                                <input type="{deger1}" name="password" ng-style="deger && FirstPass && SecondPass && {'background':'#32CD32', 'color':'white'}" ng-model="SecondPass" ng-keyup="eylem()" id="password1" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="remember-me" class="text-info"><span>Remember me</span> <span><input id="remember-me" name="remember-me" type="checkbox"></span></label><br>
+             
+		                                 <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
+                            </div>
+                                               <div id="register-link" class="text-right" ng-if="FirstPass && SecondPass">
+		 	<label ng-class="deger ? 'alert alert-success' : ('alert alert-danger')">{{Messagge}}</label>
+		 </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+		
+		</div>
+			
+	</div>
+<script>
+var app = angular.module("app",['ngAnimate']);
+app.controller("MyController",function($scope,$http){
+	$scope.deger = false;
+	$scope.deger1 = "password";
+	$scope.Messagge = "Şifreler Uyuşmuyor";
+	$scope.eylem = function(){
+		if($scope.FirstPass == $scope.SecondPass)
+		{
+			$scope.deger = true;
+			$scope.Messagge = "Şifreler Aynı";
+		}
+		else
+		{
+			$scope.deger = false;
+			$scope.Messagge = "Şifreler Uyuşmuyor";
+		}
+	};
+	
+
+});
+</script>	
+</body>
+</html>
